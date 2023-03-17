@@ -10,7 +10,7 @@ public class Coin {
     private static final String MEDIUM = "medium";
     private static final String WEAK = "weak";
 
-    public static void main(String[] args) throws RuntimeException {
+    public static void main(String[] args) {
 
         Locale.setDefault(Locale.US);
         Scanner scanner = new Scanner(System.in);
