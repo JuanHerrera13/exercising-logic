@@ -15,7 +15,7 @@ public class Coin {
         Locale.setDefault(Locale.US);
         Scanner scanner = new Scanner(System.in);
 
-        int option = 2;
+        int option;
 
         do {
             System.out.println("------HEADS OR TAILS------");
@@ -25,7 +25,7 @@ public class Coin {
             option = scanner.nextInt();
             switch (option) {
                 case 1:
-                    int coin;
+                    int numberOfCoinFlips;
                     int min;
                     int max;
                     System.out.println("\nTypes of throwing strength:\n- Weak\n- Medium\n- Strong");
@@ -35,18 +35,18 @@ public class Coin {
                     if (strength.equalsIgnoreCase(WEAK)) {
                         min = 10;
                         max = 30;
-                        coin = coinFlipResult(min, max);
-                        tossResult(coin);
+                        numberOfCoinFlips = coinFlipsResult(min, max);
+                        tossResult(numberOfCoinFlips);
                     } else if (strength.equalsIgnoreCase(MEDIUM)) {
                         min = 30;
                         max = 60;
-                        coin = coinFlipResult(min, max);
-                        tossResult(coin);
+                        numberOfCoinFlips = coinFlipsResult(min, max);
+                        tossResult(numberOfCoinFlips);
                     } else if (strength.equalsIgnoreCase(STRONG)) {
                         min = 60;
                         max = 100;
-                        coin = coinFlipResult(min, max);
-                        tossResult(coin);
+                        numberOfCoinFlips = coinFlipsResult(min, max);
+                        tossResult(numberOfCoinFlips);
                     } else {
                         System.out.println("\nThe passed strength is invalid.\n");
                     }
@@ -61,17 +61,19 @@ public class Coin {
         scanner.close();
     }
 
-    public static int coinFlipResult(int min, int max) {
+    public static int coinFlipsResult(int min, int max) {
         Random random = new Random();
-        return random.nextInt(max) + min;
+        return random.nextInt(max - min) + min;
     }
 
 
-    public static void tossResult(int coin) {
-        if (coin % 2 == 0) {
-            System.out.println("\nIt's tails!\n");
-        } else {
-            System.out.println("\nIt's heads!\n");
+    public static void tossResult(int numberOfFlips) {
+        for (int index = 0; index <= numberOfFlips; index++) {
+            if (Math.random() < 0.5 && index == numberOfFlips) {
+                System.out.println("\nIt's tails!\n");
+            } else if (Math.random() > 0.5 && index == numberOfFlips) {
+                System.out.println("\nIt's heads!\n");
+            }
         }
     }
 }
